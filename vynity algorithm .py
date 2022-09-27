@@ -16,48 +16,8 @@ from fastquant import get_crypto_data
 from keras.callbacks import EarlyStopping
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #obtaining data
 df = get_crypto_data("ETH/USDT", "2014-05-01", "2022-09-22") #prediction of ethereum
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #split for test and train
@@ -185,40 +145,6 @@ def plot_results(predicted_data, true_data):
     plt.legend()
     plt.show()
 
-# def plot_results_multiple(predicted_data, true_data, prediction_len):
-#     fig=plt.figure.Figure(facecolor='white')
-#     ax = fig.add_subplot(111)
-#     ax.plot(true_data, label='True Data')
-#     for i, data in enumerate(predicted_data):
-#         padding = [None for p in range(i * (prediction_len))]
-#         plt.plot(padding + data, label='Prediction')
-#         plt.legend()
-#     plt.show()
 
 plot_results(predictions, y_test)
 
-
-def get_change(current, previous):
-    if current == previous:
-        return 0
-    try:
-        return (abs(current - previous) / previous)*100.0
-    except ZeroDivisionError:
-        return float('inf')
-def mean(numbers):
-    return float(sum(numbers)) / max(len(numbers), 1)
-def last_change(ls1, ls2):
-    ls3 = []
-    for i in ls1:
-        ls3.append(get_change(ls1[i], ls2[i]))
-    ans = mean(ls3)
-    return ans
-
-# setA = set(predictions)
-# setB = set(y_test)
-#
-# ans = len(setA & setB) / (float(len(setA | setB))) * 100
-# print(ans)
-
-print(type(predictions))
-print(type(y_test))
